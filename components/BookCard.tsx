@@ -2,20 +2,20 @@
 
 import { Book } from "@/types/Book";
 import { BookOpen, Eye, Pencil, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type BookCardProps = {
   book: Book;
-  onView?: (book: Book) => void;
   onEdit?: (book: Book) => void;
   onDelete?: (book: Book) => void;
 };
 
 export default function BookCard({
   book,
-  onView,
   onEdit,
   onDelete,
 }: BookCardProps) {
+  const router = useRouter();
   return (
     <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md">
       <div className="relative flex aspect-[4/3] w-full items-center justify-center bg-gradient-to-br from-blue-950 to-blue-800">
@@ -53,14 +53,14 @@ export default function BookCard({
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() => onView?.(book)}
+              onClick={() => router.push(`/books/${book._id}`)}
               className="flex h-8 w-8 items-center justify-center rounded-md border border-blue-900 text-blue-900 hover:bg-blue-50"
               aria-label="Voir"
             >
               <Eye size={16} />
             </button>
             <button
-              onClick={() => onEdit?.(book)}
+              onClick={() => router.push(`/books/edit`)}
               className="flex h-8 w-8 items-center justify-center rounded-md border border-blue-900 text-blue-900 hover:bg-blue-50"
               aria-label="Modifier"
             >
@@ -69,7 +69,6 @@ export default function BookCard({
             <button
               onClick={() => onDelete?.(book)}
               className="flex h-8 w-8 items-center justify-center rounded-md bg-red-700 text-white hover:bg-red-800"
-              aria-label="Supprimer"
             >
               <Trash2 size={16} />
             </button>
