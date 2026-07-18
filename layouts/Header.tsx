@@ -16,7 +16,7 @@ export default function Header() {
             Accueil
           </Link>
           <Link
-            href="/ajouter"
+            href="/books/create"
             className="text-base text-slate-500 hover:text-slate-700"
           >
             Ajouter un livre
