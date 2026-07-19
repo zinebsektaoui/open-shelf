@@ -32,3 +32,21 @@ export async function GET(
 
   return NextResponse.json(book);
 }
+
+export async function PUT(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  await connectDB();
+
+  const { id } = await params;
+  const body = await request.json();
+
+  const updatedBook = await Book.findByIdAndUpdate(
+    id,
+    body,
+    { new: true }
+  );
+
+  return Response.json(updatedBook);
+}

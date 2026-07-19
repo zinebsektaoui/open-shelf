@@ -10,11 +10,7 @@ type BookCardProps = {
   onDelete?: (book: Book) => void;
 };
 
-export default function BookCard({
-  book,
-  onEdit,
-  onDelete,
-}: BookCardProps) {
+export default function BookCard({ book, onEdit, onDelete }: BookCardProps) {
   const router = useRouter();
   return (
     <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md">
@@ -60,7 +56,10 @@ export default function BookCard({
               <Eye size={16} />
             </button>
             <button
-              onClick={() => router.push(`/books/edit`)}
+              onClick={() => {
+                console.log("id houwa hada?????????????????????????????????????????????????????????????????????????????? : ", book._id);
+                router.push(`/books/edit/${book._id}`);
+              }}
               className="flex h-8 w-8 items-center justify-center rounded-md border border-blue-900 text-blue-900 hover:bg-blue-50"
               aria-label="Modifier"
             >
